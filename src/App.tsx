@@ -1,13 +1,15 @@
+import React from 'react';
 import { useEffect, useState } from 'react';
 import './App.css';
+import { PostedImage, GetImagesResponse } from './App.types';
 
 const App = () => {
-  const [images, setImages] = useState();
+  const [images, setImages] = useState<PostedImage[]>();
 
   useEffect(() => {
     fetch('images?limit=10')
       .then(res => res.json())
-      .then(data => {
+      .then((data: GetImagesResponse) => {
         console.log('Success:', data);
         setImages(data);
       })
