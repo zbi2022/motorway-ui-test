@@ -1,22 +1,23 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
-import './App.css';
-import { PostedImage, GetImagesResponse } from './App.types';
+import React from 'react'
+import { useEffect, useState } from 'react'
+
+import './App.css'
+import { PostedImage, GetImagesResponse } from './App.types'
 
 const App = () => {
-  const [images, setImages] = useState<PostedImage[]>();
+  const [images, setImages] = useState<PostedImage[]>()
 
   useEffect(() => {
     fetch('images?limit=10')
       .then(res => res.json())
       .then((data: GetImagesResponse) => {
-        console.log('Success:', data);
-        setImages(data);
+        console.log('Success:', data)
+        setImages(data)
       })
       .catch(error => {
-        console.error('Error:', error);
-      });
-  }, []);
+        console.error('Error:', error)
+      })
+  }, [])
 
   return (
     <div className='app'>
@@ -29,7 +30,7 @@ const App = () => {
         ))
       }
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
