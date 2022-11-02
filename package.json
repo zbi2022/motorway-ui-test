@@ -17,7 +17,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "serve": "nodemon server.js --watch server.js --watch src/images.json"
+    "serve": "nodemon server.js --watch server.js --watch src/images.json",
+    "lint": "eslint src"
   },
   "eslintConfig": {
     "extends": "react-app"
