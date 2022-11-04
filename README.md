@@ -76,3 +76,39 @@ We appreciate that your time is valuable and recommend you not spend more than 2
 
 The goal of the test is to prove your understanding of the concepts of modern HTML/CSS/JS, but not to produce something production ready or pixel perfect.
 Your work will be tested in the browser of your choice, so please specify this when submitting. This can include pre-release browsers such as Chrome Canary or Safari Technology Preview if you want to work with experimental features.
+
+
+## Solution
+
+## 1. UI task 
+- Migrated app to latest version of react
+- Switched to typescript
+- Added FE search (purely frontent)
+- Added posts page
+- Added Picture component to support webp/jpeg fallback with lazy option
+- Not added/implemented lazy pagination as server is not supporting page index. If I'm allowed to change server.js, then I can add it
+- Skipped routing / lazy loading pages
+- Added unit test for few tiny components 
+
+## 2. Performance
+- To speed app we should first optimize images for different breakpoints.
+- To fix very slow response we need to cache the response. For testing, I used Session Storage
+- Used react-query with session storage plugin due to lack of time. But I could use Promise.race to return cached response if backend response takes more time. Alternative option is to cache via Service Worker
+- To verify we can do Profiling, generate lighthouse report, web vitals
+
+## 3. Forms
+- Added Contact form to the footer.
+- Used react-hook-form with yup validator.
+- Added basic FormInput with Error support
+- Added tests for Contact Form
+- Used inputs with native types instead of custom components
+- I haven't used here native validation like pattern/required/min/max but can switch to pure form if requested
+
+
+## TODO list
+- would like to add proper support for query params like page,search and move logic to server
+- add lazy pagination with Intersection Observer API
+- add routing / to show favorite posts
+- Add toolbar to car post with some actions like: copy to URL / add to favorite / likes with nice icons from fontawesome
+- Improve modal / car post UI
+- Optimize rendering for 
