@@ -1,34 +1,27 @@
-import React from 'react'
-import { useEffect, useState } from 'react'
+import { createUseStyles } from 'react-jss'
+import { QueryClient } from '@tanstack/react-query'
+import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client'
+import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persister'
 
-import './App.css'
-import { PostedImage, GetImagesResponse } from './App.types'
+import PostsPage from '@pages/PostsPage'
+
+import globalStyles from '@styles/globalStyles'
+
+const useStyles = createUseStyles(globalStyles)
+
+const queryClient = new QueryClient()
+const persister = createSyncStoragePersister({
+  storage: window.sessionStorage,
+})
 
 const App = () => {
-  const [images, setImages] = useState<PostedImage[]>()
-
-  useEffect(() => {
-    fetch('images?limit=10')
-      .then(res => res.json())
-      .then((data: GetImagesResponse) => {
-        console.log('Success:', data)
-        setImages(data)
-      })
-      .catch(error => {
-        console.error('Error:', error)
-      })
-  }, [])
+  useStyles()
 
   return (
-    <div className='app'>
-      {
-        images && images.map(img => (
-          <div key={img.id} >
-            <img src={`${img.url}.jpg`} alt=''/>
-            <img src={`${img.user.profile_image}.webp`} alt=''/>
-          </div>
-        ))
-      }
+    <div>
+      <PersistQueryClientProvider client={queryClient} persistOptions={{ persister }}>
+        <PostsPage />
+      </PersistQueryClientProvider>
     </div>
   )
 }
